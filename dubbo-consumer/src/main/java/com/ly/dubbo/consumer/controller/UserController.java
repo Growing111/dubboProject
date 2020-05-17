@@ -5,15 +5,21 @@ import com.ly.dubbo.api.entity.User;
 import com.ly.dubbo.api.service.UserServcie;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 public class UserController {
 
-    @Reference
+    @Reference(version = "1.0.0")
     private UserServcie userServcie;
 
     @RequestMapping(value = "/finUser")
-    public User findUser(){
-        return userServcie.getUser();
+    public String findUser(){
+        return userServcie.findUser();
+    }
+
+    @RequestMapping(value = "/getAll")
+    public List<User> getAll(){
+        return  userServcie.getAllUser();
     }
 }
