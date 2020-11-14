@@ -9,4 +9,6 @@ public interface UserServcie {
     String findUser();
 
     List<User> getAllUser();
+
+    void saveUser(User user);
 }

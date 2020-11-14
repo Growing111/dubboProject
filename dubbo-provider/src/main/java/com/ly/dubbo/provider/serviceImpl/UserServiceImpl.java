@@ -5,6 +5,7 @@ import com.ly.dubbo.api.entity.User;
 import com.ly.dubbo.api.service.UserServcie;
 import com.ly.dubbo.provider.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.util.List;
 
@@ -12,7 +13,10 @@ import java.util.List;
 public class UserServiceImpl implements UserServcie {
 
     @Autowired
-    public UserMapper userMapper;
+    private UserMapper userMapper;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public String findUser() {
@@ -23,4 +27,11 @@ public class UserServiceImpl implements UserServcie {
     public List<User> getAllUser() {
         return userMapper.getAll();
     }
+
+    @Override
+    public void saveUser(User user) {
+        redisTemplate.opsForValue().set(user.getId(), user);
+    }
+
+
 }
