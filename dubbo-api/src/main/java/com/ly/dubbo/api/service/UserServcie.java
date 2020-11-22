@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface UserServcie {
 
-    String findUser();
+    User findUser(User user);
 
     List<User> getAllUser();
 
     void saveUser(User user);
+
+    User getUserInfo(String userId);
 }

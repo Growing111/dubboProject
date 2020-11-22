@@ -7,4 +7,12 @@
         SELECT * FROM USER
     </select>
 
+    <select id="getUserInfo" parameterType="String" resultType="com.ly.dubbo.api.entity.User">
+        select id,username FROM  USER WHERE id=#{id}
+    </select>
+
+    <select id="findUser" parameterType="com.ly.dubbo.api.entity.User" resultType="com.ly.dubbo.api.entity.User">
+        select id,username,departmentId,roleId,loginTime FROM  USER WHERE username=#{username} and password=#{password}
+    </select>
+
 </mapper>
